@@ -37,10 +37,16 @@ function gameLogic(playerChoice, cpuChoice) {
   const playerScore = 0
   const cpuScore = 0
 
-  if (playerChoice === "rock" && cpuChoice === "scissors") {
-    playerScore += 1
-    playerScoreEl.textContent = playerScore
-    commentaryEl.textContent = "Player Wins"
+  if (playerChoice === "rock") {
+    if (cpuChoice === "scissors") {
+      playerScore += 1
+      playerScoreEl.textContent = playerScore
+      commentaryEl.textContent = "Player Wins"
+    } else if (cpuChoice === "paper") {
+      cpuScore += 1
+      cpuChoiceEl.textContent = cpuScore
+      commentaryEl.textContent = "CPU Wins"
+    }
   }
 }
 

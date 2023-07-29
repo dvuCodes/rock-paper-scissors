@@ -5,6 +5,9 @@ const cpuChoiceEl = document.getElementById("cpu-choice")
 const rockEl = document.getElementById("rock-el")
 const paperEl = document.getElementById("paper-el")
 const scissorsEl = document.getElementById("scissors-el")
+const playerScoreEl = document.getElementById("player-score")
+const cpuScoreEl = document.getElementById("cpu-score")
+const commentaryEl = document.getElementById("commentary-el")
 
 // player picks
 // cpu randomizes a choice
@@ -12,27 +15,36 @@ const scissorsEl = document.getElementById("scissors-el")
 
 document.addEventListener("click", (e) => {
   const id = e.target.id
-  const choice = e.target.dataset.choice
+  const playerChoice = e.target.dataset.choice
+  const cpuChoice = getCpuChoice()
 
   if (id === "rock-el") {
-    userChoiceEl.textContent = choice
-    cpuChoiceEl.textContent = cpuChoice()
+    userChoiceEl.textContent = playerChoice
+    cpuChoiceEl.textContent = cpuChoice
+    gameLogic(playerChoice, cpuChoice)
   }
   if (id === "paper-el") {
-    userChoiceEl.textContent = choice
-    cpuChoiceEl.textContent = cpuChoice()
+    userChoiceEl.textContent = playerChoice
+    cpuChoiceEl.textContent = cpuChoice
   }
   if (id === "scissors-el") {
-    userChoiceEl.textContent = choice
-    cpuChoiceEl.textContent = cpuChoice()
+    userChoiceEl.textContent = playerChoice
+    cpuChoiceEl.textContent = cpuChoice
   }
 })
 
 function gameLogic(playerChoice, cpuChoice) {
-  // do something
+  const playerScore = 0
+  const cpuScore = 0
+
+  if (playerChoice === "rock" && cpuChoice === "scissors") {
+    playerScore += 1
+    playerScoreEl.textContent = playerScore
+    commentaryEl.textContent = "Player Wins"
+  }
 }
 
-function cpuChoice() {
+function getCpuChoice() {
   const options = ["rock", "paper", "scissors"]
   const length = options.length
   return options[randomize(length)]

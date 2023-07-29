@@ -1,5 +1,3 @@
-"use strict"
-
 const userChoiceEl = document.getElementById("user-choice")
 const cpuChoiceEl = document.getElementById("cpu-choice")
 const rockEl = document.getElementById("rock-el")
@@ -8,6 +6,9 @@ const scissorsEl = document.getElementById("scissors-el")
 const playerScoreEl = document.getElementById("player-score")
 const cpuScoreEl = document.getElementById("cpu-score")
 const commentaryEl = document.getElementById("commentary-el")
+
+let playerScore = 0
+let cpuScore = 0
 
 // player picks
 // cpu randomizes a choice
@@ -26,28 +27,48 @@ document.addEventListener("click", (e) => {
   if (id === "paper-el") {
     userChoiceEl.textContent = playerChoice
     cpuChoiceEl.textContent = cpuChoice
+    gameLogic(playerChoice, cpuChoice)
   }
   if (id === "scissors-el") {
     userChoiceEl.textContent = playerChoice
     cpuChoiceEl.textContent = cpuChoice
+    gameLogic(playerChoice, cpuChoice)
   }
 })
 
 function gameLogic(playerChoice, cpuChoice) {
-  const playerScore = 0
-  const cpuScore = 0
-
-  if (playerChoice === "rock") {
-    if (cpuChoice === "scissors") {
-      playerScore += 1
-      playerScoreEl.textContent = playerScore
-      commentaryEl.textContent = "Player Wins"
-    } else if (cpuChoice === "paper") {
-      cpuScore += 1
-      cpuChoiceEl.textContent = cpuScore
-      commentaryEl.textContent = "CPU Wins"
-    }
+  if (playerChoice === "rock" && cpuChoice === "scissors") {
+    playerScore += 1
+    commentaryEl.textContent = "Player Wins"
+  } else if (playerChoice === "rock" && cpuChoice === "paper") {
+    cpuScore += 1
+    commentaryEl.textContent = "CPU Wins"
+  } else {
+    commentaryEl.textContent = "Draw"
   }
+
+  if (playerChoice === "paper" && cpuChoice === "rock") {
+    playerScore += 1
+    commentaryEl.textContent = "Player Wins"
+  } else if (playerChoice === "paper" && cpuChoice === "scissors") {
+    cpuScore += 1
+    commentaryEl.textContent = "CPU Wins"
+  } else {
+    commentaryEl.textContent = "Draw"
+  }
+
+  if (playerChoice === "scissors" && cpuChoice === "paper") {
+    playerScore += 1
+    commentaryEl.textContent = "Player Wins"
+  } else if (playerChoice === "scissors" && cpuChoice === "rock") {
+    cpuScore += 1
+    commentaryEl.textContent = "CPU Wins"
+  } else {
+    commentaryEl.textContent = "Draw"
+  }
+
+  playerScoreEl.textContent = playerScore
+  cpuScoreEl.textContent = cpuScore
 }
 
 function getCpuChoice() {

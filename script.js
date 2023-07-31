@@ -83,3 +83,7 @@ function getCpuChoice() {
 function randomize(num) {
   return Math.floor(Math.random() * num)
 }
+
+function playRound() {
+  // code here
+}

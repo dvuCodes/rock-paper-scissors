@@ -1,3 +1,6 @@
+const GAME_ROUNDS = 5
+let currentRound = GAME_ROUNDS
+
 const userChoiceEl = document.getElementById("user-choice")
 const cpuChoiceEl = document.getElementById("cpu-choice")
 const rockEl = document.getElementById("rock-el")
@@ -10,9 +13,7 @@ const commentaryEl = document.getElementById("commentary-el")
 let playerScore = 0
 let cpuScore = 0
 
-// player picks
-// cpu randomizes a choice
-// function that compares choices and outputs decision
+// player clicks - chooses , refence choice to playerChoice
 
 document.addEventListener("click", (e) => {
   const id = e.target.id
@@ -22,21 +23,21 @@ document.addEventListener("click", (e) => {
   if (id === "rock-el") {
     userChoiceEl.textContent = playerChoice
     cpuChoiceEl.textContent = cpuChoice
-    gameLogic(playerChoice, cpuChoice)
+    game(playerChoice, cpuChoice)
   }
   if (id === "paper-el") {
     userChoiceEl.textContent = playerChoice
     cpuChoiceEl.textContent = cpuChoice
-    gameLogic(playerChoice, cpuChoice)
+    game(playerChoice, cpuChoice)
   }
   if (id === "scissors-el") {
     userChoiceEl.textContent = playerChoice
     cpuChoiceEl.textContent = cpuChoice
-    gameLogic(playerChoice, cpuChoice)
+    game(playerChoice, cpuChoice)
   }
 })
 
-function gameLogic(playerChoice, cpuChoice) {
+function game(playerChoice, cpuChoice) {
   if (playerChoice === "rock" && cpuChoice === "scissors") {
     playerScore += 1
     commentaryEl.textContent = "Player Wins"
@@ -69,6 +70,7 @@ function gameLogic(playerChoice, cpuChoice) {
 
   playerScoreEl.textContent = playerScore
   cpuScoreEl.textContent = cpuScore
+  currentRound -= 1
 }
 
 function getCpuChoice() {
@@ -81,5 +83,3 @@ function getCpuChoice() {
 function randomize(num) {
   return Math.floor(Math.random() * num)
 }
-
-console.log(rockEl.value)
